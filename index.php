@@ -1,8 +1,8 @@
 <?php
 
-define("nichan", true);
+define("nichan", 1);
 
-require_once __DIR__ . '/assets/init.php';
+require_once('assets/init.php');
 
 ob_start();
 
@@ -11,29 +11,37 @@ if ($user->isLoggedIn()) {
     DB::getInstance()->update('nr_users', $user->data()->id, ['lastseen' => time()]);
 }
 
-// Sanitize page request
-$page = filter_var(Input::get('page1'), FILTER_SANITIZE_STRING);
-
-// Define valid pages
-$validPages = [
-    'terms', 'login', 'register', 'logout', 'page', 'search', 'contact', 
-    'settings', 'categories', 'create-review', 'review', 'user', 'admin-cp'
+// Page mappings
+$pages = [
+    'home' => 'sources/home.php',
+    'terms' => 'sources/terms.php',
+    'login' => 'sources/login.php',
+    'register' => 'sources/register.php',
+    'logout' => 'sources/logout.php',
+    'page' => 'sources/page.php',
+    'search' => 'sources/search.php',
+    'contact' => 'sources/contact.php',
+    'settings' => 'sources/settings.php',
+    'categories' => 'sources/categories.php',
+    '404' => 'sources/404.php',
+    'create-review' => 'sources/create-review.php',
+    'review' => 'sources/review.php',
+    'user' => 'sources/user.php',
+    'admin-cp' => 'admin/autoload.php',
 ];
 
-// Route to requested page or default to home
-$pagePath = '';
+// Sanitize page input
+$page = filter_var(Input::get('page1'), FILTER_SANITIZE_STRING);
 
-if (empty($page)) {
-    $pagePath = 'sources/home.php';
-} elseif (in_array($page, $validPages)) {
-    $pagePath = "sources/{$page}.php";
-} elseif ($page === 'admin-cp') {
-    $pagePath = 'admin/autoload.php';
-} else {
-    $pagePath = 'sources/404.php';
-}
+// Default to 'home' if no page is specified
+$page = empty($page) ? 'home' : $page;
 
-// Include the selected page
-require_once __DIR__ . '/' . $pagePath;
+// Check if page exists in the mapping, else default to '404'
+$pagePath = isset($pages[$page]) ? $pages[$page] : $pages['404'];
+
+// Include the appropriate page
+require_once($pagePath);
 
 ob_end_flush();
+
+?>
