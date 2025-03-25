@@ -5,13 +5,11 @@ Reviews & Ratings is a web-based application that allows users to submit reviews
 
 ## Features
 
-- **User Reviews**: Allows users to leave detailed feedback on companies, services, and products.
+- **User Reviews**: Allows users to leave detailed feedback on companies.
 - **Rating System**: Star-based ratings (1 to 5 stars) for each review.
 - **Live Ratings**: Real-time rating updates for companies or products.
 - **Multi-Language Support**: Reviews can be submitted in multiple languages, and users can read reviews in their preferred language.
 - **User Profiles**: Users can create personalized profiles and track their activity (reviews, ratings, etc.).
-- **Reward System**: Active reviewers are rewarded for their contributions.
-- **Company and Product Comparison**: Users can compare different companies or products based on reviews and ratings.
 - **Admin Dashboard**: Admins can manage reviews, users, and reports through an easy-to-use dashboard.
 
 ## Getting Started
