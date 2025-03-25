@@ -61,7 +61,7 @@ $site = new Site();
 $lang = new Lang();
 $user = new User();
 
-$baseUrl          = $site->get('url');
+$baseUrl          = ""; // URL ex https://www.example.com
 $themeDirectory   = $baseUrl . '/views/themes/' . $site->get('default_theme');
 
 $site->url       = $baseUrl;
